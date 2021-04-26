@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:auth_nav/application.dart';
+
+import 'application.dart';
 
 void main() {
   runApp(Application());
