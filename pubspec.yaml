@@ -11,6 +11,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   json_annotation: ^4.0.1
   dio: 4.0.0
+  date_time_picker: ^2.0.0
 
 dev_dependencies:
   flutter_test:
