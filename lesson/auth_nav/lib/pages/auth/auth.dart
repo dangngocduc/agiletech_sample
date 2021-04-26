@@ -1,6 +1,7 @@
 import 'dart:developer' as developer;
-import 'package:auth_nav/pages/home/home.dart';
 import 'package:flutter/material.dart';
+
+import '../home/home.dart';
 
 class Auth extends StatefulWidget {
   static const ROUTE_NAME = 'Auth';

@@ -1,10 +1,11 @@
-import 'package:demo_flutter_app/date_form_2_field.dart';
-import 'package:demo_flutter_app/pass_word_form_field.dart';
-import 'package:demo_flutter_app/text_form_field.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:date_time_picker/date_time_picker.dart';
-import 'date_form_field.dart';
+
+import '../../formfields/date_form_2_field.dart';
+import '../../formfields/pass_word_form_field.dart';
+import '../../formfields/text_form_field.dart';
 
 class SignUpScreen extends StatefulWidget {
   @override
@@ -166,9 +167,6 @@ class _SignUpScreen extends State<SignUpScreen> {
                         } else if (value.length < 8) {
                           return "enter password false";
                         }
-                        // setState(() {
-                        //   _passWord = value;
-                        // });
                       },
                       onSaved: (value){
                         _passWord = value!;
@@ -182,7 +180,6 @@ class _SignUpScreen extends State<SignUpScreen> {
                         } else if (value != _passWord) {
                           return "confirm password false";
                         }
-                        setState(() {});
                       },
                     ),
                     Padding(
@@ -214,7 +211,6 @@ class _SignUpScreen extends State<SignUpScreen> {
                                     borderRadius:
                                         new BorderRadius.circular(5.0),
                                   ),
-
                                 ),
                               ),
                             ),
@@ -271,17 +267,6 @@ class _SignUpScreen extends State<SignUpScreen> {
                                 ),
                               ),
                             ),
-                            Text("${selectedDate.toLocal()}".split(' ')[0]),
-                            ElevatedButton(
-                                onPressed: () {
-                                  // _selectDate(context);
-                                  selectedDate = showDatePicker(
-                                      context: context,
-                                      initialDate: selectedDate,
-                                      firstDate: DateTime(2015, 8),
-                                      lastDate: DateTime(2101)) as DateTime;
-                                },
-                                child: Text("abc"))
                           ],
                         )),
                   ],

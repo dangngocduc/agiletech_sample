@@ -59,17 +59,6 @@ class MyTextFormField extends FormField<String> {
                               ),
                         )),
                   ),
-
-                  // _text.text.isEmpty ? Text(
-                  //   "Loi ",
-                  //   style: TextStyle(color: Colors.red),
-                  // )
-                  //     : Container(),
-                  // (state.value == null) ? Text(
-                  //   "Loi ",
-                  //   style: TextStyle(color: Colors.red),
-                  // )
-                  //     : Container(),
                   state.hasError
                       ? Align(alignment: Alignment.centerLeft, child: Padding(padding: EdgeInsets.only(left: 24), child: Text(
                     state.errorText!,

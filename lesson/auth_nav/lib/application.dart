@@ -1,6 +1,8 @@
 import 'dart:developer' as developer;
 import 'package:flutter/material.dart';
-import 'package:auth_nav/pages/auth/auth.dart';
+import 'pages/auth/sign_in.dart';
+import 'pages/auth/sign_up_screen.dart';
+
 class Application extends StatefulWidget {
   static const ROUTE_NAME = 'Application';
 
@@ -14,7 +16,7 @@ class _ApplicationState extends State<Application> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Auth(),
+      home: SignIn(),
     );
   }
 }
