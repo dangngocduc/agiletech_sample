@@ -10,11 +10,7 @@ class Api {
   static Future<HomeState> getUser(String page) async {
     UserRepository userRepository;
     Response response = await dio.get("users?page=$page");
-    print("response.data: " + response.data.toString());
     userRepository = UserRepository.fromJson(response.data);
-    userRepository.data.forEach((element) {
-      print(element.toJson().toString());
-    });
     HomeState newState = HomeState(userRepository);
     return newState;
   }

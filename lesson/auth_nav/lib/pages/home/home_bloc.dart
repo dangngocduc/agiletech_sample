@@ -2,6 +2,9 @@ import 'package:auth_nav/data/model/user_repository.dart';
 import 'package:auth_nav/data/repository/api/api.dart';
 import 'package:auth_nav/pages/home/home_event.dart';
 import 'package:auth_nav/pages/home/home_state.dart';
+import 'package:auth_nav/pages/setting/setting_page.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
@@ -27,6 +30,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         newState.userRepository.data.addAll(homeSateNew.userRepository.data);
         yield newState;
       }
+    } else if (event is HomeEventChangeTheme) {
+      Navigator.push(event.context,
+          MaterialPageRoute(builder: (context) => SettingPage()));
     }
   }
 }

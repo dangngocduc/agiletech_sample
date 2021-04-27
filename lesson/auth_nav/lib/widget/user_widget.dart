@@ -18,12 +18,11 @@ class _UserWidgetState extends State<UserWidget> {
 
   @override
   Widget build(BuildContext context) {
-    print("user: " + widget.user.toJson().toString());
     return Container(
       color: Colors.grey,
       width: double.infinity,
       child: Material(
-        color: Colors.white,
+        color:Theme.of(context).backgroundColor,
         child: InkWell(
           onTap: () {},
           child: Padding(
@@ -35,11 +34,6 @@ class _UserWidgetState extends State<UserWidget> {
                   height: 40,
                   child: ClipOval(
                     clipBehavior: Clip.antiAlias,
-                    // child: FadeInImage(
-                    //   // placeholder: AssetImage(
-                    //   //     "lib/app/assets/images/ic_loading_animation.gif"),
-                    //   image: NetworkImage(widget.user.avatar),
-                    // ),
                     child: Image.network(widget.user.avatar),
                   ),
                 ),
