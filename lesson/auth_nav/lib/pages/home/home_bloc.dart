@@ -13,10 +13,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       HomeState homeSateNew = await Api.getUser("1");
       yield homeSateNew;
     } else if (event is HomeEventLoadmore) {
-      if (event.oldState.userRepository.page + 1 <=
-          event.oldState.userRepository.totalPages) {
+      // if (event.oldState.userRepository.page + 1 <=
+      //     event.oldState.userRepository.totalPages) {
+
         HomeState homeSateNew = await Api.getUser(
-            (event.oldState.userRepository.page + 1).toString());
+            ("2").toString());
         HomeState newState = HomeState(UserRepository(
             homeSateNew.userRepository.page,
             homeSateNew.userRepository.perPage,
@@ -26,7 +27,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         newState.userRepository.data.addAll(event.oldState.userRepository.data);
         newState.userRepository.data.addAll(homeSateNew.userRepository.data);
         yield newState;
-      }
+      // }
     }
   }
 }

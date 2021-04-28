@@ -18,10 +18,10 @@ class _UserWidgetState extends State<UserWidget> {
 
   @override
   Widget build(BuildContext context) {
-    print("user: " + widget.user.toJson().toString());
     return Container(
       color: Colors.grey,
       width: double.infinity,
+      // height: 100,
       child: Material(
         color: Colors.white,
         child: InkWell(

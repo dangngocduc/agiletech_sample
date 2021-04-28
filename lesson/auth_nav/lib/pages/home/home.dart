@@ -6,7 +6,6 @@ import 'package:auth_nav/pages/home/home_state.dart';
 import 'package:auth_nav/widget/user_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 
 class Home extends StatefulWidget {
   static const ROUTE_NAME = 'Home';
@@ -18,6 +17,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   static const TAG = 'Home';
   final _bloc = HomeBloc(HomeState(UserRepository(1, 1, 1, 1, [])));
+  var _isLoadMore = false;
 
   @override
   void initState() {
@@ -38,23 +38,19 @@ class _HomeState extends State<Home> {
         ),
         body: BlocProvider(
           create: (_) => _bloc,
-          child: BlocBuilder<HomeBloc, HomeState>(builder: (bloc, state) {
+          child: BlocBuilder<HomeBloc, HomeState>(buildWhen: (homeState, _) {
+            setState(() {
+              _isLoadMore = false;
+            });
+            return true;
+          }, builder: (bloc, state) {
             return Stack(
               children: [
                 Container(
-                  child: LazyLoadScrollView(
-                    onEndOfPage: () {
-                      _bloc.add(HomeEventLoadmore(state));
-                    },
+                    width: double.infinity,
+                    height: double.infinity,
                     child: state.userRepository.data.isNotEmpty
-                        ? ListView.builder(
-                            itemCount: state.userRepository.data.length,
-                            itemBuilder: (context, index) {
-                              return ListTile(
-                                title: UserWidget(
-                                    state.userRepository.data[index]),
-                              );
-                            })
+                        ? _content(state)
                         : Container(
                             alignment: Alignment.center,
                             child: SizedBox(
@@ -62,11 +58,9 @@ class _HomeState extends State<Home> {
                               height: 40,
                               child: CircularProgressIndicator(),
                             ),
-                          ),
-                  ),
-                ),
+                          )),
                 Align(
-                  alignment: Alignment.bottomCenter,
+                  alignment: Alignment.bottomRight,
                   child: ElevatedButton(
                       onPressed: () {
                         Navigator.of(context).pop();
@@ -80,5 +74,48 @@ class _HomeState extends State<Home> {
             );
           }),
         ));
+  }
+
+  _content(state) {
+    return NotificationListener<ScrollNotification>(
+      onNotification: (scrollNotification) {
+        if (scrollNotification is ScrollEndNotification) {
+          if (!_isLoadMore) {
+            setState(() {
+              _isLoadMore = true;
+            });
+            Future.delayed(Duration(seconds: 4), () {
+              _bloc.add(HomeEventLoadmore(_bloc.state));
+            });
+          }
+        }
+        return true;
+      },
+      child: ListView(
+        shrinkWrap: true,
+        children: [
+          ListView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: state.userRepository.data.length,
+              itemBuilder: (context, index) {
+                return UserWidget(state.userRepository.data[index]);
+              }),
+          Wrap(
+            alignment: WrapAlignment.center,
+            children: [
+              Visibility(
+                  visible: _isLoadMore,
+                  child: Container(
+                    margin: EdgeInsets.only(top: 10),
+                    width: 30,
+                    height:30,
+                    child: CircularProgressIndicator(),
+                  )),
+            ],
+          )
+        ],
+      ),
+    );
   }
 }
