@@ -21,6 +21,7 @@ class _UserWidgetState extends State<UserWidget> {
     return Container(
       color: Colors.grey,
       width: double.infinity,
+      // height: 100,
       child: Material(
         color:Theme.of(context).backgroundColor,
         child: InkWell(

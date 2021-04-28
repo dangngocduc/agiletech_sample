@@ -25,6 +25,11 @@ class _ApplicationState extends State<Application> {
     });
   }
 
+  //
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -32,8 +37,8 @@ class _ApplicationState extends State<Application> {
       theme: CustomTheme.light,
       darkTheme: CustomTheme.dark,
       themeMode: customTheme.getCurentThem,
-      home: SignIn(),
-      // home: Home(),
+      // home: SignIn(),
+      home: Home(),
     );
   }
 }
