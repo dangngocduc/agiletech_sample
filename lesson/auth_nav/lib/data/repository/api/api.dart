@@ -14,4 +14,10 @@ class Api {
     HomeState newState = HomeState(userRepository);
     return newState;
   }
+
+  static Future<List<User>> getUser2(String page) async {
+    Response response = await dio.get("users?page=$page");
+    var userRepository = UserRepository.fromJson(response.data);
+    return userRepository.data;
+  }
 }

@@ -34,6 +34,8 @@ dependencies:
   google_fonts: ^2.0.0
   async: ^2.5.0
   date_time_picker: ^2.0.0
+  fl_paging: ^2.0.0
+  tuple: ^2.0.0
 
 dev_dependencies:
   flutter_test:

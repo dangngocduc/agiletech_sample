@@ -15,17 +15,18 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  static const TAG = 'Home';
   final _bloc = HomeBloc(HomeState(UserRepository(1, 1, 1, 1, [])));
-  var _isLoadMore = false;
+  bool _isLoadMore = false;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
-      _bloc.add(HomeEventFirstGet());
-    });
+    _bloc.add(HomeEventFirstGet());
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
   }
 
   @override
@@ -53,29 +54,29 @@ class _HomeState extends State<Home> {
               })
         ],
       ),
-        body: BlocProvider(
-          create: (_) => _bloc,
+        body: BlocProvider.value(
+          value: _bloc,
           child: BlocBuilder<HomeBloc, HomeState>(buildWhen: (homeState, _) {
             setState(() {
               _isLoadMore = false;
             });
             return true;
           }, builder: (bloc, state) {
+            var content = _content(state);
+            var emptyWidget = Container(
+              alignment: Alignment.center,
+              child: SizedBox(
+                width: 40,
+                height: 40,
+                child: CircularProgressIndicator(),
+              ),
+            );
             return Stack(
               children: [
                 Container(
                     width: double.infinity,
                     height: double.infinity,
-                    child: state.userRepository.data.isNotEmpty
-                        ? _content(state)
-                        : Container(
-                            alignment: Alignment.center,
-                            child: SizedBox(
-                              width: 40,
-                              height: 40,
-                              child: CircularProgressIndicator(),
-                            ),
-                          )),
+                    child: state.userRepository.data.isNotEmpty? content : emptyWidget),
                 Align(
                   alignment: Alignment.bottomRight,
                   child: ElevatedButton(

@@ -1,4 +1,5 @@
 import 'dart:developer' as developer;
+import 'package:auth_nav/pages/demo_paging/demo_paging_page.dart';
 import 'package:auth_nav/pages/home/home.dart';
 import 'package:auth_nav/theme/CustomTheme.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +39,7 @@ class _ApplicationState extends State<Application> {
       darkTheme: CustomTheme.dark,
       themeMode: customTheme.getCurentThem,
       // home: SignIn(),
-      home: Home(),
+      home: DemoPagingPage(),
     );
   }
 }
