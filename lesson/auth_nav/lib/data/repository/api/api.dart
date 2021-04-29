@@ -5,7 +5,8 @@ import 'package:auth_nav/pages/home/home_state.dart';
 import 'package:dio/dio.dart';
 
 class Api {
-  static final dio = Dio(BaseOptions(baseUrl: "https://reqres.in/api/"));
+  // static final dio = Dio(BaseOptions(baseUrl: "https://reqres.in/api/"));
+  static final dio = Dio(BaseOptions(baseUrl: "https://demo.api-platform.com/"));
 
   static Future<HomeState> getUser(String page) async {
     UserRepository userRepository;

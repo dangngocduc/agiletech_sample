@@ -26,6 +26,9 @@ class CustomTheme with ChangeNotifier {
     return ThemeData().copyWith(
         backgroundColor: Colors.white,
         appBarTheme: AppBarTheme(
+            textTheme: ThemeData()
+                .textTheme
+                .copyWith(headline6: ThemeData().textTheme.headline6!.copyWith(color: Colors.black)),
             iconTheme: IconThemeData().copyWith(color: Colors.black),
             brightness: Brightness.light,
             color: Colors.white,

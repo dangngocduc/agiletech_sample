@@ -8,17 +8,22 @@ import 'user_data_source.dart';
 
 class DemoPagingPage extends StatefulWidget {
   static const ROUTE_NAME = 'DemoPagingPage';
+
   @override
   _DemoPagingPageState createState() => _DemoPagingPageState();
 }
 
 class _DemoPagingPageState extends State<DemoPagingPage> {
   static const TAG = 'DemoPagingPage';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Demo Paging'),
+        title: Text(
+          'Demo Paging',
+          style: Theme.of(context).textTheme.headline6,
+        ),
       ),
       body: paging.ListView<User>(
         pageDataSource: UserDataSource(),
