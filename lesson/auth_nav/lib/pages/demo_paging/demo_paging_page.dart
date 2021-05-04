@@ -25,19 +25,6 @@ class _DemoPagingPageState extends State<DemoPagingPage> {
         itemBuilder: (context, data, index) {
           return UserWidget(data);
         },
-        emptyBuilder: (context) {
-          return Container();
-        },
-        loadingBuilder: (context) {
-          return Center(
-            child: Text('Loading.....'),
-          );
-        },
-        errorBuilder: (context, error) {
-          return Center(
-            child: Text('Error.....'),
-          );
-        },
       ),
     );
   }
